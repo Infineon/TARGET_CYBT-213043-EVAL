@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Design version="11" xmlns="http://cypress.com/xsd/cydesignfile_v2">
+    <ToolInfo version="1.0.0"/>
+    <Devices>
+        <Device mpn="CYBT-213043-02">
+            <BlockConfig>
+                <Block location="bluetooth[0]" alias="BT" template="20x19_bluetooth" version="1.0"/>
+                <Block location="ioss[0]" alias="" template="20x19_ioss" version="1.0"/>
+                <Block location="ioss[0].pin[0]" alias="BTN_USER" template="20x19_pin" version="1.0">
+                    <Param id="Type" value="BUTTON"/>
+                    <Param id="Index" value="1"/>
+                    <Param id="DefaultState" value="GPIO_PIN_OUTPUT_LOW"/>
+                    <Param id="PressedValue" value="GPIO_PIN_OUTPUT_HIGH"/>
+                    <Param id="Control" value="GPIO_INPUT_ENABLE"/>
+                    <Param id="PullMode" value="GPIO_PULL_DOWN"/>
+                    <Param id="InterruptEnable" value="true"/>
+                    <Param id="InterruptTrigger" value="GPIO_EN_INT_RISING_EDGE"/>
+                </Block>
+                <Block location="ioss[0].pin[10]" alias="PUART_CTS" template="20x19_pin" version="1.0">
+                    <Param id="Type" value="PERIPHERAL"/>
+                    <Param id="Index" value="0"/>
+                    <Param id="DefaultState" value="GPIO_PIN_OUTPUT_LOW"/>
+                    <Param id="Control" value="GPIO_INPUT_ENABLE"/>
+                    <Param id="PullMode" value="GPIO_PULL_UP_DOWN_NONE"/>
+                    <Param id="InterruptEnable" value="false"/>
+                    <Param id="InterruptTrigger" value="GPIO_EN_INT_RISING_EDGE"/>
+                </Block>
+                <Block location="ioss[0].pin[11]" alias="PUART_RTS" template="20x19_pin" version="1.0">
+                    <Param id="Type" value="PERIPHERAL"/>
+                    <Param id="Index" value="0"/>
+                    <Param id="DefaultState" value="GPIO_PIN_OUTPUT_LOW"/>
+                    <Param id="Control" value="GPIO_INPUT_ENABLE"/>
+                    <Param id="PullMode" value="GPIO_PULL_UP_DOWN_NONE"/>
+                    <Param id="InterruptEnable" value="false"/>
+                    <Param id="InterruptTrigger" value="GPIO_EN_INT_RISING_EDGE"/>
+                </Block>
+                <Block location="ioss[0].pin[27]" alias="LED2" template="20x19_pin" version="1.0">
+                    <Param id="Type" value="LED"/>
+                    <Param id="Index" value="2"/>
+                    <Param id="DefaultState" value="GPIO_PIN_OUTPUT_HIGH"/>
+                    <Param id="Control" value="GPIO_OUTPUT_ENABLE"/>
+                    <Param id="PullMode" value="GPIO_INPUT_DISABLE"/>
+                    <Param id="InterruptEnable" value="false"/>
+                    <Param id="InterruptTrigger" value="GPIO_EN_INT_RISING_EDGE"/>
+                </Block>
+                <Block location="ioss[0].pin[32]" alias="PUART_TX" template="20x19_pin" version="1.0">
+                    <Param id="Type" value="PERIPHERAL"/>
+                    <Param id="Index" value="0"/>
+                    <Param id="DefaultState" value="GPIO_PIN_OUTPUT_LOW"/>
+                    <Param id="Control" value="GPIO_INPUT_ENABLE"/>
+                    <Param id="PullMode" value="GPIO_PULL_UP_DOWN_NONE"/>
+                    <Param id="InterruptEnable" value="false"/>
+                    <Param id="InterruptTrigger" value="GPIO_EN_INT_RISING_EDGE"/>
+                </Block>
+                <Block location="ioss[0].pin[37]" alias="PUART_RX" template="20x19_pin" version="1.0">
+                    <Param id="Type" value="PERIPHERAL"/>
+                    <Param id="Index" value="1"/>
+                    <Param id="DefaultState" value="GPIO_PIN_OUTPUT_LOW"/>
+                    <Param id="Control" value="GPIO_INPUT_ENABLE"/>
+                    <Param id="PullMode" value="GPIO_PULL_UP_DOWN_NONE"/>
+                    <Param id="InterruptEnable" value="false"/>
+                    <Param id="InterruptTrigger" value="GPIO_EN_INT_RISING_EDGE"/>
+                </Block>
+                <Block location="ioss[0].pin[5]" alias="LED1" template="20x19_pin" version="1.0">
+                    <Param id="Type" value="LED"/>
+                    <Param id="Index" value="1"/>
+                    <Param id="DefaultState" value="GPIO_PIN_OUTPUT_LOW"/>
+                    <Param id="Control" value="GPIO_INPUT_ENABLE"/>
+                    <Param id="PullMode" value="GPIO_PULL_DOWN"/>
+                    <Param id="InterruptEnable" value="false"/>
+                    <Param id="InterruptTrigger" value="GPIO_EN_INT_RISING_EDGE"/>
+                </Block>
+                <Block location="uart[1]" alias="PUART" template="20x19_uart" version="1.0"/>
+            </BlockConfig>
+            <Netlist>
+                <Net>
+                    <Port name="ioss[0].pin[10].aux[0]"/>
+                    <Port name="uart[1].cts[0]"/>
+                </Net>
+                <Net>
+                    <Port name="ioss[0].pin[11].aux[0]"/>
+                    <Port name="uart[1].rts[0]"/>
+                </Net>
+                <Net>
+                    <Port name="ioss[0].pin[32].aux[0]"/>
+                    <Port name="uart[1].txd[0]"/>
+                </Net>
+                <Net>
+                    <Port name="ioss[0].pin[37].aux[0]"/>
+                    <Port name="uart[1].rxd[0]"/>
+                </Net>
+            </Netlist>
+        </Device>
+    </Devices>
+    <Libraries>
+        <Library name="bt_sdk" version="1.1"/>
+    </Libraries>
+    <ConfiguratorData/>
+</Design>
