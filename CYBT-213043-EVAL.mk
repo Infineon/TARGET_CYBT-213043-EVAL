@@ -1,5 +1,5 @@
 #
-# Copyright 2019, Cypress Semiconductor Corporation or a subsidiary of
+# Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
 # Cypress Semiconductor Corporation. All Rights Reserved.
 #
 # This software, including source code, documentation and related
@@ -47,6 +47,7 @@ BLD=A
 # floating point and other device specific compiler flags
 #
 CY_CORE_CFLAGS+=-mfloat-abi=soft
+CY_RECIPE_EXTRA_LIBS+=-lgcc
 
 #
 # Define the features for this target

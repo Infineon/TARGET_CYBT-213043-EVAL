@@ -14,7 +14,7 @@ The Cypress CYBT-213043-EVAL Evaluation Kit enables you to evaluate and develop 
 
 To use the CYBT-213043-EVAL:
 
-1) Configure the evaluation board headers/switches to the desired settings 
+1) Configure the evaluation board headers/switches to the desired settings
 
 2) Connect the evaluation board to a PC via a USB cable
 
