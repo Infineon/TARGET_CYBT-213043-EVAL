@@ -4,9 +4,13 @@
 * Description:
 * Pin configuration
 * This file was automatically generated and should not be modified.
+* Tools Package 2.1.0.1266
+* 20819A1
+* personalities 1.0.0.31
+* udd 1.2.0.128
 *
 ********************************************************************************
-* Copyright 2017-2019 Cypress Semiconductor Corporation
+* Copyright 2020 Cypress Semiconductor Corporation
 * SPDX-License-Identifier: Apache-2.0
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -52,7 +56,6 @@ extern "C" {
 #define PUART_RX WICED_P37
 #define LED1_ENABLED 1U
 #define LED1 WICED_P05
-#define UART_ENABLED 1U
 #define PUART_ENABLED 1U
 
 extern const wiced_platform_gpio_t platform_gpio_pins[];
