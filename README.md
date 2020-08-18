@@ -37,5 +37,8 @@ Arduino compatible shields can be connected through the Arduino compatible heade
 
 Max UART baud rate is 1M. Use baud rate of 115200 for Client Control.
 
+External 32 kHz LPO is used by default. To operate without external LPO, set USE_32K_EXTERNAL_LPO=0 on
+make command line or edit default value in CYBT-213043-EVAL.mk.
+
 For more information, see [CYBT-213043-EVAL](http://www.cypress.com/CYBT-213043-EVAL)
 
