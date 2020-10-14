@@ -43,6 +43,26 @@ CHIP=20819
 CHIP_REV=A1
 BLD=A
 
+FLOW_VERSION=$(if $(strip $(CY_GETLIBS_SHARED_PATH)),2,1)
+ifeq ($(FLOW_VERSION),2)
+# Chip specific libs
+COMPONENTS+=$(COMPONENTS_$(CHIP)$(CHIP_REV))
+CY_APP_PATCH_LIBS+=$(CY_$(CHIP)$(CHIP_REV)_APP_PATCH_LIBS)
+# baselib and BSP path variables
+CY_TARGET_DEVICE?=$(CHIP)$(CHIP_REV)
+ifeq ($(SEARCH_$(CY_TARGET_DEVICE)),)
+# internal only - app deploys will always initialize this in mtb.mk
+SEARCH_$(CY_TARGET_DEVICE)?=$(IN_REPO_BTSDK_ROOT)/wiced_btsdk/dev-kit/baselib/$(CY_TARGET_DEVICE)
+SEARCH+=$(SEARCH_$(CY_TARGET_DEVICE))
+endif
+CY_BSP_PATH?=$(SEARCH_TARGET_$(TARGET))
+CY_BASELIB_PATH?=$(SEARCH_$(CHIP)$(CHIP_REV))
+CY_BASELIB_CORE_PATH?=$(SEARCH_core-make)
+CY_INTERNAL_BASELIB_PATH?=$(patsubst %/,%,$(CY_BASELIB_PATH))
+#else
+#CY_BSP_PATH?=$(CY_SHARED_PATH)/dev-kit/bsp/TARGET_$(TARGET)
+endif
+
 #
 # Define the features for this target
 #
@@ -98,12 +118,20 @@ define extract_btp_file_value
 $(patsubst $1=%,%,$(filter $1%,$2))
 endef
 
+# override core-make buggy CY_SPACE till it's fixed
+CY_EMPTY=
+CY_SPACE=$(CY_EMPTY) $(CY_EMPTY)
+
 # split up btp file into "x=y" text
 CY_BT_FILE_TEXT:=$(shell cat -e $(CY_CORE_BTP))
 CY_BT_FILE_TEXT:=$(subst $(CY_SPACE),,$(CY_BT_FILE_TEXT))
 CY_BT_FILE_TEXT:=$(subst ^M,,$(CY_BT_FILE_TEXT))
 CY_BT_FILE_TEXT:=$(patsubst %$(\n),% ,$(CY_BT_FILE_TEXT))
 CY_BT_FILE_TEXT:=$(subst $$,$(CY_SPACE),$(CY_BT_FILE_TEXT))
+
+ifeq ($(CY_BT_FILE_TEXT),)
+$(error Failed to parse BTP variables from file: $(CY_CORE_BTP))
+endif
 
 SS_LOCATION = $(call extract_btp_file_value,DLConfigSSLocation,$(CY_BT_FILE_TEXT))
 VS_LOCATION = $(call extract_btp_file_value,DLConfigVSLocation,$(CY_BT_FILE_TEXT))
@@ -113,7 +141,7 @@ DS2_LOCATION = $(call extract_btp_file_value,ConfigDS2Location,$(CY_BT_FILE_TEXT
 
 # OTA
 ifeq ($(OTA_FW_UPGRADE),1)
-CY_DS2_APP_HEX=$(CY_SHARED_PATH)/dev-kit/bsp/TARGET_$(TARGET)/ds2_app_$(CY_CORE_OTA_FW_UPGRADE_STORE).hex
+CY_DS2_APP_HEX=$(CY_BSP_PATH)/ds2_app_$(CY_CORE_OTA_FW_UPGRADE_STORE).hex
 CY_APP_OTA=OTA
 CY_APP_OTA_DEFINES=-DOTA_FW_UPGRADE=1
 ifeq ($(CY_APP_SECURE_OTA_FIRMWARE_UPGRADE),1)
@@ -131,6 +159,9 @@ endif
 #CY_APP_OTA_DEFINES += -DOTA_ENCRYPT_SFLASH_DATA
 #endif
 #endif
+ifneq ($(CY_DS2_APP_MAKE_SKIP)),1)
+-include $(CY_BSP_PATH)/ds2_app.mk
+endif
 endif
 
 # use flash offset and length to limit xip range
