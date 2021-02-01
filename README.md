@@ -4,7 +4,7 @@
 
 The Cypress CYBT-213043-EVAL Evaluation Kit enables you to evaluate and develop single-chip Bluetooth applications using the EZ-BT WICED Module CYBT-213043-02. The CYBT-213043-02 EZ-BT WICED Module is an integrated, fully certified, 12.0 mm x 16.61 mm x 1.70 mm, programmable dual-mode Bluetooth module designed to reduce your time-to-market. The CYBT-213043-02 module utilizes the Cypress CYW20819 silicon device.  Manufactured using advanced CMOS low-power process, the CYW20819 employs high integration to reduce external components, thereby minimizing the device's footprint and cost. This kit helps evaluate device functionality and develop applications quickly for faster time-to-market. CYBT-213043-EVAL can be used as a standalone evaluation kit or can be combined with Arduino-compatible shields.
 
-* CYW20819-based dual-mode (BLE/BR/EDR) Bluetooth 5.0-compliant fully certified module (CYBT-213043-02)
+* CYW20819-based dual-mode (LE/BR/EDR) Bluetooth 5.0-compliant fully certified module (CYBT-213043-02)
 * Arduino compatible headers for hardware expansion
 * User switches and LEDs
 * FCC, ISED, MIC, and CE Certified Module on board (CYBT-213043-02)
@@ -37,8 +37,7 @@ Arduino compatible shields can be connected through the Arduino compatible heade
 
 Max UART baud rate is 1M. Use baud rate of 115200 for Client Control.
 
-External 32 kHz LPO is used by default. To operate without external LPO, set USE_32K_EXTERNAL_LPO=0 on
-make command line or edit default value in CYBT-213043-EVAL.mk.
+External 32 kHz LPO is used by default. To operate without external LPO, set USE\_32K\_EXTERNAL\_LPO=0 on the make command line or edit the default value in CYBT-213043-EVAL.mk.
 
 For more information, see [CYBT-213043-EVAL](http://www.cypress.com/CYBT-213043-EVAL)
 
