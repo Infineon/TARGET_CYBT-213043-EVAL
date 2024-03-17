@@ -4,7 +4,7 @@
 
 The Infineon CYBT-213043-EVAL Evaluation Kit enables you to evaluate and develop single-chip Bluetooth&#174; applications using the EZ-BT AIROC&#8482; Module CYBT-213043-02. The CYBT-213043-02 EZ-BT AIROC&#8482; Module is an integrated, fully certified, 12.0 mm x 16.61 mm x 1.70 mm, programmable dual-mode Bluetooth&#174; module designed to reduce your time-to-market. The CYBT-213043-02 module utilizes the Infineon CYW20819 silicon device.  Manufactured using advanced CMOS low-power process, the CYW20819 employs high integration to reduce external components, thereby minimizing the device's footprint and cost. This kit helps evaluate device functionality and develop applications quickly for faster time-to-market. CYBT-213043-EVAL can be used as a standalone evaluation kit or can be combined with Arduino-compatible shields.
 
-* CYW20819-based dual-mode (LE/BR/EDR) Bluetooth&#174; 5.0-compliant fully certified module (CYBT-213043-02)
+* CYW20819-based dual-mode (LE/BR/EDR) Bluetooth&#174; 5.4-compliant fully certified module (CYBT-213043-02)
 * Arduino compatible headers for hardware expansion
 * User switches and LEDs
 * FCC, ISED, MIC, and CE Certified Module on board (CYBT-213043-02)
